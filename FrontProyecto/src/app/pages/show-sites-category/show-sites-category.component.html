@@ -1,0 +1,43 @@
+
+<div *ngIf="sitesCategory.length > 0" class="place__container container ">
+
+    <!--==================== PLACES CARD 1 ====================-->
+    <div *ngFor="let cat of sitesCategory">
+        <div class="ContenedorNombreCategoria" >
+            <a [routerLink]="['/categoria/' + cat.id]"><h1> {{ cat.name }}  </h1></a>
+            <a [routerLink]="['/categoria/' + cat.id]" style="margin-top: 10px; margin-left: 9px; text-decoration: none; color: #11414B; cursor: pointer;;"><i class="fa-solid fa-angles-right"></i></a>
+        </div>
+        
+
+        
+
+        <div class="infoTarjeta"  >
+            <div  class="place__card "  *ngFor="let site of cat.sites">
+                <img src="{{ site.image }}" alt="" class="place__img">
+    
+                <div class="place__content">
+                    <p class="place__rating">
+                        <i *ngFor="let _ of getNumberRange(getFilledStars(site.quality))" class="ri-star-line place__rating-icon filled-star"></i>
+      <i *ngFor="let _ of getNumberRange(getEmptyStars(site.quality))" class="ri-star-line place__rating-icon empty-star"></i>
+                    </p>
+                    
+    
+                    <div class="place__data" >
+                        <a [routerLink]="['/discover/comments/show/', site.id]">
+                            <h3 class="place__title">{{ site.name }}</h3>
+                        </a>
+                        <span class="place__subtitle">{{ site.location }}</span>
+                        <span *ngIf="site.price >0" class="place__price" >{{ site.price | currency }}</span>
+                        <span *ngIf="site.price ==0" class="place__price" >Gratis</span>
+    
+                    </div>
+                </div>
+                <a [routerLink]="['/categoria/' + cat.id]">
+                    <button class="button button--flex place__button">
+                        <i class="ri-chat-forward-line"></i>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

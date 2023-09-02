@@ -1,0 +1,36 @@
+<br><br><br>
+<br>
+
+<div class="contenedorInfoUsuario" *ngIf="user != null" >
+    <div class="avatarUsuario" style="padding: 5px;">
+        <img  style=" border-radius: 100%; " src="{{ user?.avatar }}" alt="avatar">
+    </div>
+    
+    <div class="contenidoUsuario">
+
+        <div class="infoUsuario">
+            <h4 *ngIf="user?.name" class="atributosUsuario"> Nombre:  {{user?.name}}</h4>
+            <h4  *ngIf="user?.phone" class="atributosUsuario"> Telefono: {{user?.phone}}</h4>
+            <h4  *ngIf="user?.email" class="atributosUsuario">Correo:  {{user?.email}}</h4>
+            <h4 *ngIf="user?.nationality" class="atributosUsuario">Nacionalidad: {{user?.nationality}}</h4>
+            <h4  *ngIf="user?.gender " class="atributosUsuario">Genero: {{user?.gender}}</h4>
+        </div>
+
+
+        <div class="rutaActualizar">
+            <a [routerLink]="['/update/user']" href="">Actualzar perfil</a>
+        </div>
+        
+
+    </div>
+    
+</div>
+
+<div *ngIf="user == null" style="display: flex; justify-content: center; align-items: center; height: 200px ;">
+    <div class="container">
+        <div class="circular-progress"></div>
+      </div>
+</div>
+
+<br><br><br>
+<br><br><br>

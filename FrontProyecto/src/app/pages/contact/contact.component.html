@@ -1,0 +1,118 @@
+<section id="subscribe_section" class="subscribe section">
+<!--
+    <div class="subscribe__bg">
+        <div class="subscribe__container container">
+            <h2 class="section__title subscribe__title">Déjanos tu inquietud <br> Te respondemos de inmediato</h2>
+            <p class="subscribe__description">
+                Daremos solucion a tus peticiones
+            </p>
+
+            <form id="formulario" (ngSubmit)="sendEmail()" [formGroup]="formEmail" class="subscribe__form"
+                method="POST">
+
+                <input type="text" placeholder="Nombre Completo - Full Name" class="subscribe__input" name="full_name"
+                    id="full_name" formControlName="full_name" required>
+                <small
+                    *ngIf="formEmail.controls['full_name'].errors?.['required'] && formEmail.controls['full_name'].touched"
+                    class="p-error block" style="color: red;">full name is required.</small>
+                <hr class="hr">
+
+                <input type="email" name="email" id="email" placeholder="Email" class="subscribe__input"
+                    formControlName="email" required>
+                <small *ngIf="formEmail.controls['email'].errors?.['required'] && formEmail.controls['email'].touched"
+                    class="p-error block" style="color: red;">email is required.</small>
+                <hr class="hr">
+                <br>
+
+                <textarea name="message" id="message" class="form_input--message" cols="30" rows="10"
+                    placeholder="Escribe tu mensaje" required formControlName="message"></textarea>
+                <small
+                    *ngIf="formEmail.controls['message'].errors?.['required'] && formEmail.controls['message'].touched"
+                    class="p-error block" style="color: red;">message is required.</small>
+                <hr class="hr">
+
+
+                <div class="container-button-enviar">
+                    <button class="button" type="submit">
+                        Enviar
+                    </button>
+                    <input type="reset" value="Borrar" class="button-clear-content">
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <br><br><br><br>
+-->
+
+<div class="contenedor-formulario">
+    <h1 class="formulario-h1">Contactanos</h1>
+    <div class="contenido-contactanos">
+        
+        <div class="formulario">
+            <h1 class="h1">Ingresa tus datos</h1>
+            
+            <form id="formulario" (ngSubmit)="sendEmail()" [formGroup]="formEmail" method="POST" class="form">
+
+                <input type="text" placeholder="Nombre Completo" class="nombre" name="full_name"  id="full_name" formControlName="full_name" required>
+                <small
+                    *ngIf="formEmail.controls['full_name'].errors?.['required'] && formEmail.controls['full_name'].touched"
+                    class="p-error block" style="color: red;">Ingresa tu nombre</small>
+                    
+                <input type="text" placeholder="Numero Telefonico" class="nombre" name="full_name"  id="full_name" formControlName="full_name" required  maxlength="10">
+                <small
+                    *ngIf="formEmail.controls['full_name'].errors?.['required'] && formEmail.controls['full_name'].touched"
+                    class="p-error block" style="color: red;">Ingresa tu numero telefonico</small>
+
+                <input type="email" name="email" id="email" placeholder="Correo Electronico" class="email" formControlName="email" required>
+                <small *ngIf="formEmail.controls['email'].errors?.['required'] && formEmail.controls['email'].touched"
+                    class="p-error block" style="color: red;">Ingresa tu Email</small>
+                
+             
+
+                <textarea name="message" id="message" class="form_input--message" cols="30" rows="10"
+                    placeholder="Escribe tu mensaje" required formControlName="message" ></textarea>
+                <small
+                    *ngIf="formEmail.controls['message'].errors?.['required'] && formEmail.controls['message'].touched"
+                    class="p-error block" style="color: red;">Ingresa tu solicitud</small>
+                
+
+
+                <div class="container-button-enviar" style="margin-top: 20px;">
+                    <button class="button" type="submit">
+                        Enviar
+                    </button>
+                    <input type="reset" value="Borrar" class="button-clear-content" style="cursor: pointer;">
+                </div>
+            </form>
+        </div>
+
+
+
+        <div class="more_information">
+            <div class="info">
+                <h1>Mayor Información</h1>
+                <p style="text-align: justify;">No dudes en hacernos saber tus peticiones, Estamos para ayudarte!</p>
+                <ul>
+                    <li><i class="fa fa-location-dot"></i>  Colombia - Villavicencio</li>
+                    <li><i class="fa fa-phone"></i>  (+57) 322 947 5876</li>
+                    <li><i class="fa fa-envelope-open-text"></i>  contact@website.com</li>
+                </ul>
+                <div class="redes">
+                    <a href="https://github.com/BrayanGarzon" target="_blank"><i class="fa-brands fa-github-alt"></i></a>
+                    <a href="https://www.facebook.com/brayan.garzon.33234"><i class="fa-brands fa-facebook" target="_blank"></i></a>
+                    <a href="https://wa.link/sibpka" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://wa.link/sibpka" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<br><br><br>
+
+</section>

@@ -1,0 +1,138 @@
+<div *ngIf="site">
+    
+    <br><br><br><br>
+    <br><br>
+
+    
+
+    <div class="cabeceraSite">
+        <div class="tituloSite">   
+            <h2 class="sineName" style="text-align: center;">{{ site.name }}</h2>
+            <li class="calificacionLi">
+                <h2 style="font-size: 15px;" class="calificacion">
+
+                    <i *ngFor="let _ of getNumberRange(site.quality)" class="ri-star-line filled-star"></i>
+                    <i *ngFor="let _ of getNumberRange(calculateMissingStars(site.quality))" class="ri-star-line empty-star"></i>
+                   
+                </h2>
+                
+                
+                
+                   
+            </li>
+            
+        </div>
+        <div class="tituloCategoria">
+            <h2>{{ site.category.name }}</h2>
+        </div>
+
+    </div>
+
+    <div class="container">
+        
+        <div class="image">
+            <div class="place__container container grid">
+                <div class="place__card" *ngFor="let image of site.site_images">
+                    <img src="{{ image.image }}" alt="" class="place__img">
+                </div>
+            </div>
+        </div>
+        
+        <div class="text" style="text-align: justify; margin-top: 4em;">
+            <h4>{{ site.description }}</h4>
+            <ul style="margin-top: 2em;">
+                <li>
+                    <h2 style="font-size: 15px;"><strong style="font-size: 18px; text-align: left; padding-right: 46px">Precio:</strong> {{ site.price == 0 ? 'Ingreso gratuito' : site.price | currency }}</h2>
+                </li>
+
+                <li>
+                    <h2 style="font-size: 15px;"><strong style="font-size: 18px; text-align: left;  padding-right: 19px;">Dirección:</strong> {{ site.address }}</h2>
+                </li>
+            </ul>
+
+
+            <div class="social-section">
+                <h2 style="font-size: 15px; text-align: left;"><strong style="font-size: 18px; text-align: left;  padding-right: 40px;">Redes:</strong>
+                    <a href="{{ social.link }}" class="social-icon" *ngFor="let social of site.social_networks"  target="_blank">
+                    <i [ngClass]="getClass(social.type_social_network)"></i>
+                    </a>
+                </h2>
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<br><br>
+<hr style="max-width: 1024px; background-color: #14505C; margin: auto;"> <!--linea-->
+<h3 style="font-size: 30px; width: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; margin-top: 30px;">Comentarios:  
+    <h5 style="margin-left: 10px;">{{ comments.length }}</h5> <!-- Mostrar el total de comentarios --></h3>
+<br><br>
+
+<div style="width: 60%; display: block; margin: 0 auto; align-items: center; justify-content: center; margin-top: 30px;"
+    *ngIf="site">
+    
+
+    <a [routerLink]="['/discover/comment/sites/', site.id]" class="button" style="width: 100%; text-align: center;">Haz
+        un comentario</a>
+        
+</div>
+
+
+<div  *ngFor="let comment of comments" class="comentario">
+
+    
+    <div class="chat-card" >
+        <div class="chat-content">
+            <div class="contenedorNombre">
+                <div class="avatar">
+                    <img src="{{ comment.user?.avatar }}" alt="Avatar">
+                </div>
+                <!-- Agregar eventos (mouseover) y (mouseout) en el h4 -->
+                <h4 (mouseover)="toggleDivFlotante(comment, true)" (mouseout)="toggleDivFlotante(comment, false)" class="nombreUserComent">
+                    <a [routerLink]="['/infoUserComment']" [queryParams]="{user: comment.user?.id}" class="nameUserComent">{{ comment.user?.name || 'Usuario desconocido' }}</a>
+                </h4>
+                
+                
+                    <!-- Mostrar el div flotante solo si 'showDivFlotante' es verdadero  -->
+                <div class="divFlotante" *ngIf="comment.showDivFlotante">
+                        
+                    <div style="display: flex; align-items: center; justify-content: center;">
+                        <img src="{{ comment.user?.avatar }}" alt="Avatar">
+                        
+                        {{ comment.user?.name || 'Usuario desconocido' }}
+                        
+                    </div>
+                        
+                    <br>
+                    {{comment.user?.email}} <br>
+                    Ver aportes: <!--{{ comment.commentCount || 0 }}-->
+                    <i class="fa-solid fa-comment"></i>
+                    <i class="fa-solid fa-shop"></i>
+            
+            
+                 </div>
+            </div>
+            
+            <div class="rating-section">
+                <p><!--Puntuacion:--> 
+                    <i *ngFor="let _ of getNumberRange(comment.quality)" class="ri-star-line filled-star"></i>
+                    <i *ngFor="let _ of getNumberRange(calculateMissingStars(comment.quality))" class="ri-star-line empty-star"></i>
+                </p>
+            </div>
+            
+            
+            <!-- Mostrar los primeros 150 caracteres del comentario -->
+            <p style="margin-top: 10px; text-align: justify;">
+                {{ comment.expanded ? comment.name : (comment.name | slice:0:180) }}{{ comment.name.length > 180 && !comment.expanded ? '...' : '' }}
+                <span *ngIf="comment.name.length > 180" (click)="toggleExpand(comment)" class="ver-mas">{{ comment.expanded ? 'Ver menos' : 'Ver más' }}</span>
+              </p>
+              
+      
+      
+            <small style="margin-top: 10px;"><!--created at:--> {{ comment.created_at | date:"d-M-y hh:mm a"}}</small>
+        </div>
+    </div>
+</div>
